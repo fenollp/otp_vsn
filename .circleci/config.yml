@@ -19,8 +19,7 @@ jobs:
     - run: rebar3 eunit
     - run: git clone https://github.com/fenollp/otp_vsn_testing.git
     - run: cd otp_vsn_testing
-    - run: rebar3 eunit
-    - run: rebar3 release
+    - run: rebar3 do eunit,release
 
   test_20.0:
     docker: [image: 'erlang:20.0']

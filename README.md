@@ -2,7 +2,7 @@
 
 Macros defined per Erlang/OTP version so you don't have to.
 
-Header-only, no dependencies. Supports releases from `R16B` to latest.
+Header-only, no dependencies. Supports releases from `R16B01` to latest.
 Note: no need to include `otp_vsn` in your apps or releases. This is should only be a compile-time dependency!
 
 ```erlang
@@ -22,7 +22,7 @@ Note: no need to include `otp_vsn` in your apps or releases. This is should only
 ## Macros
 
 * `OTP_VSN`: OTP version string in `MAJOR.MINOR.PATCH` format
-    * Zeros are added where needed (e.g. `"16.0.0"` for R16B)
+    * Zeros are added where needed (e.g. `"16.1.0"` for R16B01)
 * `OTP_VSN_MAJOR`: above `MAJOR` part as an integer
 * `OTP_VSN_MINOR`: above `MINOR` part as an integer
 * `OTP_VSN_PATCH`: above `PATCH` part as an integer
