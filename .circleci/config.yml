@@ -8,7 +8,7 @@ workflows:
     - test_19.3.6
     - test_19.3.X
     - test_18.3.X
-    - test_17.4.X
+    - test_17.4.0
 
 jobs:
 
@@ -19,12 +19,19 @@ jobs:
     - _OTP_VSN_M: 20
     - _OTP_VSN_m: 3
     - _OTP_VSN_P: 2
+  # - _R3: 3.5.0
     steps: &test_steps
     - checkout
+    # - run: |
+    #     cd /usr/src
+    #     git clone --branch $_R3 https://github.com/otp/rebar3.git
+    #     cd rebar3 && ./bootstrap
+    #     mv -v rebar3 /usr/bin/rebar3
     - run: rebar3 eunit
-    - run: git clone https://github.com/fenollp/otp_vsn_testing.git
-    - run: cd otp_vsn_testing
-    - run: rebar3 do eunit,release
+    - run: |
+        git clone https://github.com/fenollp/otp_vsn_testing.git
+        cd otp_vsn_testing
+        rebar3 do eunit,release
 
   test_20.0.5:
     docker: [image: 'erlang:20.0.5']
@@ -62,11 +69,11 @@ jobs:
     - _OTP_VSN_P: X
     steps: *test_steps
 
-  test_17.4.X:
+  test_17.4.0:
     docker: [image: 'voidlock/erlang:17.4-onbuild']
     environment:
-    - _OTP_VSN: 17.4.X
+    - _OTP_VSN: 17.4.0
     - _OTP_VSN_M: 17
     - _OTP_VSN_m: 4
-    - _OTP_VSN_P: X
+    - _OTP_VSN_P: 0
     steps: *test_steps
