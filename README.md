@@ -3,6 +3,7 @@
 Macros defined per Erlang/OTP version so you don't have to.
 
 Header-only, no dependencies. Supports releases from `R16B` to latest.
+Note: no need to include `otp_vsn` in your apps or releases. This is should only be a compile-time dependency!
 
 ```erlang
 {deps, [otp_vsn]}.

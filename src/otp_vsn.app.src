@@ -1,5 +1,5 @@
 {application, otp_vsn,
- [{description, "An OTP library"},
+ [{description, "Macros defined per Erlang/OTP version so you don't have to."},
   {vsn, "0.1.0"},
   {registered, []},
   {applications,

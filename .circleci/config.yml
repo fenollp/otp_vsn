@@ -10,38 +10,34 @@ workflows:
     - test_18.3
     - test_17.5
 
-eunit: &eunit
-- checkout
-- run: rebar3 eunit
-
 jobs:
 
   test_20.3:
-    docker:
-      - image: erlang:20.3
-    steps: *eunit
+    docker: [image: 'erlang:20.3']
+    steps: &test_steps
+    - checkout
+    - run: rebar3 eunit
+    - run: git clone https://github.com/fenollp/otp_vsn_testing.git
+    - run: cd otp_vsn_testing
+    - run: rebar3 eunit
+    - run: rebar3 release
 
   test_20.0:
-    docker:
-      - image: erlang:20.0
-    steps: *eunit
+    docker: [image: 'erlang:20.0']
+    steps: *test_steps
 
-  test_http://19.3.6.2:
-    docker:
-      - image: erlang:19.3.6.2
-    steps: *eunit
+  test_19.3.6.2:
+    docker: [image: 'erlang:19.3.6.2']
+    steps: *test_steps
 
   test_19.3:
-    docker:
-      - image: erlang:19.3
-    steps: *eunit
+    docker: [image: 'erlang:19.3']
+    steps: *test_steps
 
   test_18.3:
-    docker:
-      - image: erlang:18.3
-    steps: *eunit
+    docker: [image: 'erlang:18.3']
+    steps: *test_steps
 
   test_17.5:
-    docker:
-      - image: erlang:17.5
-    steps: *eunit
+    docker: [image: 'erlang:17.5']
+    steps: *test_steps
