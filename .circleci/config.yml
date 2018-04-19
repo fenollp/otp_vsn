@@ -3,8 +3,8 @@ workflows:
   version: 2
   tests:
     jobs:
-    - test_20.3
-    - test_20.0
+    - test_20.3.2
+    - test_20.0.5
     - test_19.3.6.2
     - test_19.3
     - test_18.3
@@ -12,8 +12,8 @@ workflows:
 
 jobs:
 
-  test_20.3:
-    docker: [image: 'erlang:20.3']
+  test_20.3.2:
+    docker: [image: 'erlang:20.3.2']
     steps: &test_steps
     - checkout
     - run: rebar3 eunit
@@ -21,8 +21,8 @@ jobs:
     - run: cd otp_vsn_testing
     - run: rebar3 do eunit,release
 
-  test_20.0:
-    docker: [image: 'erlang:20.0']
+  test_20.0.5:
+    docker: [image: 'erlang:20.0.5']
     steps: *test_steps
 
   test_19.3.6.2:
