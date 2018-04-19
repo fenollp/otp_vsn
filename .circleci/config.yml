@@ -27,7 +27,7 @@ jobs:
     #     git clone --branch $_R3 https://github.com/otp/rebar3.git
     #     cd rebar3 && ./bootstrap
     #     mv -v rebar3 /usr/bin/rebar3
-    - run: rebar3 eunit
+    - run: DEBUG=1 rebar3 eunit
     - run: |
         git clone https://github.com/fenollp/otp_vsn_testing.git
         cd otp_vsn_testing
