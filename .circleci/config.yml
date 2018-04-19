@@ -5,15 +5,20 @@ workflows:
     jobs:
     - test_20.3.2
     - test_20.0.5
-    - test_19.3.6.2
-    - test_19.3
-    - test_18.3
-    - test_17.5
+    - test_19.3.6
+    - test_19.3.-
+    - test_18.3.-
+    - test_17.4.-
 
 jobs:
 
   test_20.3.2:
     docker: [image: 'erlang:20.3.2']
+    environment:
+    - _OTP_VSN: 20.3.2
+    - _OTP_VSN_M: 20
+    - _OTP_VSN_m: 3
+    - _OTP_VSN_P: 2
     steps: &test_steps
     - checkout
     - run: rebar3 eunit
@@ -23,20 +28,45 @@ jobs:
 
   test_20.0.5:
     docker: [image: 'erlang:20.0.5']
+    environment:
+    - _OTP_VSN: 20.0.5
+    - _OTP_VSN_M: 20
+    - _OTP_VSN_m: 0
+    - _OTP_VSN_P: 5
     steps: *test_steps
 
-  test_19.3.6.2:
-    docker: [image: 'erlang:19.3.6.2']
+  test_19.3.6:
+    docker: [image: 'erlang:19.3.6']
+    environment:
+    - _OTP_VSN: 19.3.6
+    - _OTP_VSN_M: 19
+    - _OTP_VSN_m: 3
+    - _OTP_VSN_P: 6
     steps: *test_steps
 
-  test_19.3:
+  test_19.3.-:
     docker: [image: 'erlang:19.3']
+    environment:
+    - _OTP_VSN: 19.3.-
+    - _OTP_VSN_M: 19
+    - _OTP_VSN_m: 3
+    - _OTP_VSN_P: -
     steps: *test_steps
 
-  test_18.3:
+  test_18.3.-:
     docker: [image: 'erlang:18.3']
+    environment:
+    - _OTP_VSN: 19.3.-
+    - _OTP_VSN_M: 19
+    - _OTP_VSN_m: 3
+    - _OTP_VSN_P: -
     steps: *test_steps
 
-  test_17.5:
-    docker: [image: 'erlang:17.5']
+  test_17.4.-:
+    docker: [image: 'voidlock/erlang:17.4-onbuild']
+    environment:
+    - _OTP_VSN: 17.4.-
+    - _OTP_VSN_M: 17
+    - _OTP_VSN_m: 4
+    - _OTP_VSN_P: -
     steps: *test_steps
