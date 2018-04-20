@@ -1,6 +1,8 @@
 version: 2
 workflows:
   version: 2
+  gen_workflow:
+    jobs: ['gen']
   nightly:
     jobs: ['gen']
     triggers:
