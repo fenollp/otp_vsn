@@ -56,9 +56,8 @@ with open('./include/otp_vsn.hrl', 'w') as fd:
 -define(OTP_VSN_MAJOR, {x}).
 -define(OTP_VSN_MINOR, {y}).
 -define(OTP_VSN_PATCH, {z}).
--define(OTP_{x}_AND_BELOW, true).
 '''.format(x=x, y=y, z=z)
-            ] + ['-define(OTP_{x}_AND_ABOVE, true).\n'.format(x=X)
+            ] + ['-define(OTP_VSN_{x}_AND_ABOVE, true).\n'.format(x=X)
                  for X in reversed(range(MIN_REL, 1+int(x)))
             ] + ['''-endif.
 '''])
@@ -68,7 +67,7 @@ with open('./include/otp_vsn.hrl', 'w') as fd:
 -define(OTP_VSN_MINOR_STRING, integer_to_list(?OTP_VSN_MINOR)).
 -define(OTP_VSN_PATCH_STRING, integer_to_list(?OTP_VSN_PATCH)).
 
--ifdef(OTP_17_AND_ABOVE).
+-ifdef(OTP_VSN_17_AND_ABOVE).
 -define(OTP_VSN_HAS_MAPS, true).
 -endif.
 
