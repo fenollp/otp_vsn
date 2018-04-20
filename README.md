@@ -1,9 +1,11 @@
-# [otp_vsn](https://github.com/fenollp/otp_vsn) [![CircleCI](https://circleci.com/gh/fenollp/otp_vsn/tree/master.svg?style=svg)](https://circleci.com/gh/fenollp/otp_vsn/tree/master)
+# [otp_vsn](https://github.com/fenollp/otp_vsn) [![CircleCI](https://circleci.com/gh/fenollp/otp_vsn/tree/master.svg?style=svg)](https://circleci.com/gh/fenollp/otp_vsn/tree/master) [![TravisCI build status](https://travis-ci.org/fenollp/otp_vsn.svg?branch=master)](https://travis-ci.org/fenollp/otp_vsn)
 
 Macros defined per Erlang/OTP version so you don't have to.
 
 This saves you the copy/pasting/tweaking of [`erl_opts`'s `platform_define`](https://www.rebar3.org/docs/configuration#section-compilation).
+
 Header-only, no dependencies. Supports releases from `R16B01` to latest.
+
 Note: no need to include `otp_vsn` in your apps or releases. This should only be a compile-time dependency!
 
 ```erlang

@@ -2,13 +2,13 @@ language: erlang
 matrix:
   fast_finish: true
   include: # More reliable mapping than what docker/erlang:* provides
-  - otp_release: 20.3
-    env: _OTP_VSN=20.3.2 _OTP_VSN_M=20 _OTP_VSN_m=3 _OTP_VSN_P=2
+  - otp_release: 20.2
+    env: _OTP_VSN=20.2.4 _OTP_VSN_M=20 _OTP_VSN_m=2 _OTP_VSN_P=4
   - otp_release: 20.0
     env: _OTP_VSN=20.0.5 _OTP_VSN_M=20 _OTP_VSN_m=0 _OTP_VSN_P=5
   - otp_release: 19.3
     env: _OTP_VSN=19.3 _OTP_VSN_M=19 _OTP_VSN_m=3 _OTP_VSN_P=6
-  - otp_release: 18.3.4
+  - otp_release: 18.3
     env: _OTP_VSN=18.3.4 _OTP_VSN_M=18 _OTP_VSN_m=3 _OTP_VSN_P=4
   - otp_release: 18.2.1
     env: _OTP_VSN=18.2.1 _OTP_VSN_M=18 _OTP_VSN_m=2 _OTP_VSN_P=1

@@ -1,15 +1,6 @@
 version: 2
 workflows:
   version: 2
-  tests:
-    jobs:
-    - gen
-    - test_20.3.2
-    - test_20.0.5
-    - test_19.3.6
-    - test_18.3.4
-    - test_17.4.0
-
   nightly:
     jobs: ['gen']
     triggers:
@@ -27,61 +18,3 @@ jobs:
     - run: apk update && apk upgrade && apk add make curl git
     - checkout
     - run: make gen
-
-  test_20.3.2:
-    docker: [image: 'erlang:20.3.2']
-    environment:
-    - _OTP_VSN: 20.3.2
-    - _OTP_VSN_M: 20
-    - _OTP_VSN_m: 3
-    - _OTP_VSN_P: 2
-  # - _R3: 3.5.0
-    steps: &test_steps
-    - checkout
-    - run: DEBUG=1 rebar3 eunit
-  # - run: |
-  #     cd /usr/src
-  #     git clone --branch $_R3 https://github.com/erlang/rebar3.git
-  #     cd rebar3 && ./bootstrap
-  #     mv -v rebar3 /usr/bin/rebar3
-    - run: |
-        git clone https://github.com/fenollp/otp_vsn_testing.git
-        cd otp_vsn_testing
-        rebar3 do eunit,release
-        ! [ -f include/internal_otp_vsn.hrl ]
-
-  test_20.0.5:
-    docker: [image: 'erlang:20.0.5']
-    environment:
-    - _OTP_VSN: 20.0.5
-    - _OTP_VSN_M: 20
-    - _OTP_VSN_m: 0
-    - _OTP_VSN_P: 5
-    steps: *test_steps
-
-  test_19.3.6:
-    docker: [image: 'erlang:19.3.6']
-    environment:
-    - _OTP_VSN: 19.3.6
-    - _OTP_VSN_M: 19
-    - _OTP_VSN_m: 3
-    - _OTP_VSN_P: 6
-    steps: *test_steps
-
-  test_18.3.4:
-    docker: [image: 'erlang:18.3.4']
-    environment:
-    - _OTP_VSN: 18.3.4
-    - _OTP_VSN_M: 18
-    - _OTP_VSN_m: 3
-    - _OTP_VSN_P: 4
-    steps: *test_steps
-
-  test_17.4.0:
-    docker: [image: 'voidlock/erlang:17.4-onbuild']
-    environment:
-    - _OTP_VSN: 17.4.0
-    - _OTP_VSN_M: 17
-    - _OTP_VSN_m: 4
-    - _OTP_VSN_P: 0
-    steps: *test_steps
