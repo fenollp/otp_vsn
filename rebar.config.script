@@ -45,16 +45,21 @@ begin
       end,
 
   Data = ["-define(_internal_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
-  Dst = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
-            false ->
-                filename:join(
-                  ["_build","default","lib","otp_vsn","include","internal_otp_vsn.hrl"
-                  ]);
+  {NewCONFIG,Dst} =
+      case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
+          false ->
+              {CONFIG
+              ,filename:join(
+                 ["_build","default","lib","otp_vsn","include","internal_otp_vsn.hrl"
+                 ])
+              };
             true ->
                 %% Current app is this app itself
-                filename:join("include", "internal_otp_vsn.hrl")
+              {[{erl_opts,[{d,self}]} | CONFIG]
+              ,filename:join("include", "internal_otp_vsn.hrl")
+              }
         end,
   ok = file:write_file(Dst, Data),
 
-  CONFIG
+  NewCONFIG
 end.
