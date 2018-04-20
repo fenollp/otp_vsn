@@ -1130,4 +1130,8 @@
 -define(OTP_VSN_MINOR_STRING, integer_to_list(?OTP_VSN_MINOR)).
 -define(OTP_VSN_PATCH_STRING, integer_to_list(?OTP_VSN_PATCH)).
 
+-ifdef(OTP_17_AND_ABOVE).
+-define(OTP_VSN_HAS_MAPS, true).
+-endif.
+
 -endif.

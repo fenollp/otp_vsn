@@ -6,6 +6,12 @@
 -include_lib("eunit/include/eunit.hrl").
 -include_lib("otp_vsn/include/otp_vsn.hrl").
 
+-ifdef(OTP_VSN_HAS_MAPS).
+has_maps() -> true.
+-else.
+has_maps() -> false.
+-endif.
+
 do_test_() ->
     [?_assertMatch([_|_], ?OTP_VSN)
 
@@ -16,6 +22,8 @@ do_test_() ->
     ,?_assertMatch([_|_], ?OTP_VSN_MAJOR_STRING)
     ,?_assertMatch([_|_], ?OTP_VSN_MINOR_STRING)
     ,?_assertMatch([_|_], ?OTP_VSN_PATCH_STRING)
+
+    ,?_assertEqual(has_maps(), {module,maps} =:= code:ensure_loaded(maps))
 
     ] ++ %% More tests if running inside CI
         lists:flatten(

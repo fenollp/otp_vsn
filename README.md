@@ -36,6 +36,7 @@ Note: no need to include `otp_vsn` in your apps or releases. This should only be
     * e.g. for OTP 19.0 `?OTP_19_AND_ABOVE = true` but on OTP 18.3 it is not defined
 * `OTP_{{MAJOR}}_AND_BELOW`: defined & set to `true` for `?OTP_VSN` `MAJOR._._` and all versions before that
     * e.g. for OTP 19.0 `?OTP_19_AND_BELOW = true` but on OTP 20.0 it is not defined
+* `OTP_VSN_HAS_MAPS`: defined for releases which have maps (all since OTP 17.0)
 
 If you'd like to see more macros you are welcome to
 * open an issue at https://github.com/fenollp/otp_vsn/issues
