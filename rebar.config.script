@@ -44,10 +44,12 @@ begin
               end
       end,
 
-  ok = file:write_file(
-         "src/internal_otp_vsn.hrl"
-        ,["-define(_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n]
-        ),
+  Data = ["-define(_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
+  Cons = fun (H,T) -> [H|T] end,
+  PublicHRL = filelib:fold_files(".", "^otp_vsn\\.hrl$", true, Cons, []),
+  io:format(user, "\nPublicHRL = ~p\n", [PublicHRL]),
+  Dst = "src/internal_otp_vsn.hrl",
+  ok = file:write_file(Dst, Data),
 
   CONFIG
 end.
