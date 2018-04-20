@@ -16,8 +16,8 @@ matrix:
     env: _OTP_VSN=17.5.0 _OTP_VSN_M=17 _OTP_VSN_m=5 _OTP_VSN_P=0
   - otp_release: R16B03-1
     env: _OTP_VSN=16.3.1 _OTP_VSN_M=16 _OTP_VSN_m=3 _OTP_VSN_P=1
-  - otp_release: R16B
-    env: _OTP_VSN=16.0.0 _OTP_VSN_M=16 _OTP_VSN_m=0 _OTP_VSN_P=0
+  - otp_release: R16B01
+    env: _OTP_VSN=16.1.0 _OTP_VSN_M=16 _OTP_VSN_m=1 _OTP_VSN_P=0
 before_script:
 - |
   git clone --branch 3.5.0 https://github.com/erlang/rebar3.git
