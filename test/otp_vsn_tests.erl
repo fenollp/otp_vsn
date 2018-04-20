@@ -21,7 +21,7 @@ do_test_() ->
         lists:flatten(
           [[?_assertMatch([_|_], OTP_VSN)
            ,?_assertEqual(OTP_VSN, ?OTP_VSN)
-           ,?_assertNotEqual(nomatch, re:run(<<?OTP_VSN>>, <<"^[0-9]+\\.[0-9]+\\.[0-9]+$">>))
+           ,?_assertNotEqual(nomatch, re:run(<<?OTP_VSN>>, <<"^[0-9]+\\.[0-9]+\\.[0-9]+\$">>))
 
            ,?_assertMatch([_|_], OTP_VSN_M)
            ,?_assertMatch([_|_], OTP_VSN_m)
