@@ -2,11 +2,12 @@
 
 Macros defined per Erlang/OTP version so you don't have to.
 
+This saves you the copy/pasting/tweaking of [`erl_opts`'s `platform_define`](https://www.rebar3.org/docs/configuration#section-compilation).
 Header-only, no dependencies. Supports releases from `R16B01` to latest.
-Note: no need to include `otp_vsn` in your apps or releases. This is should only be a compile-time dependency!
+Note: no need to include `otp_vsn` in your apps or releases. This should only be a compile-time dependency!
 
 ```erlang
-{deps, [otp_vsn]}.
+{deps, [{otp_vsn, "~>1.0"}]}.
 ```
 
 ```erlang
