@@ -32,6 +32,7 @@ jobs:
         git clone https://github.com/fenollp/otp_vsn_testing.git
         cd otp_vsn_testing
         rebar3 do eunit,release
+        ! [ -f src/internal_otp_vsn.hrl ]
 
   test_20.0.5:
     docker: [image: 'erlang:20.0.5']

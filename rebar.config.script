@@ -45,10 +45,15 @@ begin
       end,
 
   Data = ["-define(_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
-  Cons = fun (H,T) -> [H|T] end,
-  PublicHRL = filelib:fold_files(".", "^otp_vsn\\.hrl$", true, Cons, []),
-  io:format(user, "\nPublicHRL = ~p\n", [PublicHRL]),
-  Dst = "src/internal_otp_vsn.hrl",
+  Dst = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
+            false ->
+                filename:join(
+                  ["_build","default","lib","otp_vsn","src","internal_otp_vsn.hrl"
+                  ]);
+            true ->
+                %% Current app is this app itself
+                "src/internal_otp_vsn.hrl"
+        end,
   ok = file:write_file(Dst, Data),
 
   CONFIG
