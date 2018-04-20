@@ -3,13 +3,38 @@ workflows:
   version: 2
   tests:
     jobs:
+    - gen
     - test_20.3.2
     - test_20.0.5
     - test_19.3.6
     - test_18.3.4
     - test_17.4.0
 
+  nightly:
+    jobs: ['gen']
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only: ['master']
+
 jobs:
+
+  gen:
+    docker: [image: 'erlang:alpine']
+  # environment:
+  # - _R3: 3.5.0
+    steps:
+    - run: apk update && apk upgrade && apk add curl git make python3
+    - run: |
+        cd /usr/src
+        # git clone --branch $_R3 https://github.com/erlang/rebar3.git
+        git clone https://github.com/erlang/rebar3.git
+        cd rebar3 && ./bootstrap
+        mv -v rebar3 /usr/bin/rebar3
+    - checkout
+    - run: make gen
 
   test_20.3.2:
     docker: [image: 'erlang:20.3.2']
@@ -18,14 +43,8 @@ jobs:
     - _OTP_VSN_M: 20
     - _OTP_VSN_m: 3
     - _OTP_VSN_P: 2
-  # - _R3: 3.5.0
     steps: &test_steps
     - checkout
-    # - run: |
-    #     cd /usr/src
-    #     git clone --branch $_R3 https://github.com/erlang/rebar3.git
-    #     cd rebar3 && ./bootstrap
-    #     mv -v rebar3 /usr/bin/rebar3
     - run: DEBUG=1 rebar3 eunit
     - run: |
         git clone https://github.com/fenollp/otp_vsn_testing.git

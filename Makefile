@@ -15,12 +15,11 @@ test:
 $(KERL):
 	curl -#fSLo $@ $(KERL_URL) && chmod +x $@
 
-gen: SHELL = /bin/bash
 gen: $(KERL)
 	KERL_BUILD_BACKEND=git $(KERL) update releases >$(RELEASES_TXT)
 	$(GEN) $(RELEASES_TXT)
 	@git status --porcelain
-	@[[ 0 -eq $$(git status --porcelain | grep -Eo '^MM' | wc -l) ]]
+	@[ '0' = "$$(git status --porcelain | grep -Eo '^MM' | wc -l)" ]
 
 clean:
 	$(if $(wildcard $(KERL)),rm $(KERL))
