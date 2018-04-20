@@ -18,3 +18,5 @@ _build
 rebar3.crashdump
 kerl
 releases.txt
+
+src/internal_otp_vsn.hrl

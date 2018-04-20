@@ -24,7 +24,7 @@ jobs:
     - checkout
     # - run: |
     #     cd /usr/src
-    #     git clone --branch $_R3 https://github.com/otp/rebar3.git
+    #     git clone --branch $_R3 https://github.com/erlang/rebar3.git
     #     cd rebar3 && ./bootstrap
     #     mv -v rebar3 /usr/bin/rebar3
     - run: DEBUG=1 rebar3 eunit

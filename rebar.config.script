@@ -1,0 +1,53 @@
+%% Copyright © 2018 Pierre Fenoll ‹pierrefenoll@gmail.com›
+%% See LICENSE for licensing information.
+%% -*- coding: utf-8 -*-
+begin
+    %% From https://github.com/erlang/rebar3/blob/c48435a/src/rebar_utils.erl#L489-L526
+    OTP_VSN = {X,Y,Z} =
+      case erlang:system_info(otp_release) of
+          %% If OTP <= R16, otp_release is already what we want.
+          "R16B01" -> {"16", "1", "0"};
+          "R16B02" -> {"16", "2", "0"};
+          "R16B03" -> {"16", "3", "0"};
+          "R16B03-1" -> {"16", "3", "1"};
+
+          %% If OTP >= 17.x, erlang:system_info(otp_release) returns just the
+          %% major version number, we have to read the full version from
+          %% a file. See http://www.erlang.org/doc/system_principles/versions.html
+          %% Read vsn string from the 'OTP_VERSION' file and return as list without
+          %% the "\n".
+          Rel ->
+              Split = fun (Bin) -> binary:split(Bin, <<$.>>, [global]) end,
+              ToXYZ = fun ([X,Y]) -> {binary_to_list(X), binary_to_list(Y), "0"};
+                          ([X,Y,Z]) -> {binary_to_list(X), binary_to_list(Y), binary_to_list(Z)}
+                      end,
+
+              File = filename:join([code:root_dir(), "releases", Rel, "OTP_VERSION"]),
+              {ok,Vsn} = file:read_file(File),
+              Size = byte_size(Vsn),
+              %% The shortest vsn string consists of at least two digits
+              %% followed by "\n". Therefore, it's safe to assume Size >= 3.
+              {SizeMinus1,SizeMinus3} = {Size - 1, Size - 3},
+              case Vsn of
+                  <<VSN:SizeMinus3/binary, "**\n">> ->
+                      %% The OTP documentation mentions that a system patched
+                      %% using the otp_patch_apply tool available to licensed
+                      %% customers will leave a '**' suffix in the version as a
+                      %% flag saying the system consists of application versions
+                       %% from multiple OTP versions. We ignore this flag and
+                      %% drop the suffix, given for all intents and purposes, we
+                      %% cannot obtain relevant information from it as far as
+                      %% tooling is concerned.
+                      ToXYZ(Split(VSN));
+                  <<VSN:SizeMinus1/binary, "\n">> ->
+                      ToXYZ(Split(VSN))
+              end
+      end,
+
+  ok = file:write_file(
+         "src/internal_otp_vsn.hrl"
+        ,["-define(_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n]
+        ),
+
+  CONFIG
+end.

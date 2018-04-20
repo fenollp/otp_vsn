@@ -4,6 +4,7 @@
 %% Auto-generated file. See https://github.com/fenollp/otp_vsn
 -ifndef(_OTP_VSN_HRL).
 -define(_OTP_VSN_HRL, true).
+-include("internal_otp_vsn.hrl").
 
 -ifdef(_otp_vsn_16_0_0).
 -define(OTP_VSN, "16.0.0").
