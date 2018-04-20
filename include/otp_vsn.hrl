@@ -4,7 +4,7 @@
 %% Auto-generated file. See https://github.com/fenollp/otp_vsn
 -ifndef(_OTP_VSN_HRL).
 -define(_OTP_VSN_HRL, true).
--include("internal_otp_vsn.hrl").
+-include_lib("otp_vsn/include/internal_otp_vsn.hrl").
 
 -ifdef(_otp_vsn_16_0_0).
 -define(OTP_VSN, "16.0.0").
@@ -1104,6 +1104,19 @@
 -define(OTP_VSN_MAJOR, 20).
 -define(OTP_VSN_MINOR, 3).
 -define(OTP_VSN_PATCH, 3).
+-define(OTP_20_AND_BELOW, true).
+-define(OTP_20_AND_ABOVE, true).
+-define(OTP_19_AND_ABOVE, true).
+-define(OTP_18_AND_ABOVE, true).
+-define(OTP_17_AND_ABOVE, true).
+-define(OTP_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_otp_vsn_20_3_4).
+-define(OTP_VSN, "20.3.4").
+-define(OTP_VSN_MAJOR, 20).
+-define(OTP_VSN_MINOR, 3).
+-define(OTP_VSN_PATCH, 4).
 -define(OTP_20_AND_BELOW, true).
 -define(OTP_20_AND_ABOVE, true).
 -define(OTP_19_AND_ABOVE, true).

@@ -46,12 +46,12 @@ with open('./include/otp_vsn.hrl', 'w') as fd:
     fd.write(COPYR)
     fd.write('''-ifndef(_OTP_VSN_HRL).
 -define(_OTP_VSN_HRL, true).
--include("internal_otp_vsn.hrl").
+-include_lib("otp_vsn/include/internal_otp_vsn.hrl").
 ''')
     for (x,y,z) in releases:
         fd.writelines(
             ['''
--ifdef(_otp_vsn_{x}_{y}_{z}).
+-ifdef(_internal_otp_vsn_{x}_{y}_{z}).
 -define(OTP_VSN, "{x}.{y}.{z}").
 -define(OTP_VSN_MAJOR, {x}).
 -define(OTP_VSN_MINOR, {y}).

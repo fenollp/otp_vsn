@@ -44,15 +44,15 @@ begin
               end
       end,
 
-  Data = ["-define(_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
+  Data = ["-define(_internal_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
   Dst = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
             false ->
                 filename:join(
-                  ["_build","default","lib","otp_vsn","src","internal_otp_vsn.hrl"
+                  ["_build","default","lib","otp_vsn","include","internal_otp_vsn.hrl"
                   ]);
             true ->
                 %% Current app is this app itself
-                "src/internal_otp_vsn.hrl"
+                filename:join("include", "internal_otp_vsn.hrl")
         end,
   ok = file:write_file(Dst, Data),
 

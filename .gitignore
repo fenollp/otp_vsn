@@ -16,7 +16,7 @@ _build
 .idea
 *.iml
 rebar3.crashdump
+
 kerl
 releases.txt
-
-src/internal_otp_vsn.hrl
+include/internal_otp_vsn.hrl
