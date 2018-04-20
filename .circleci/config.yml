@@ -14,8 +14,7 @@ workflows:
     jobs: ['gen']
     triggers:
       - schedule:
-          cron: daily
-        # cron: '0 0 * * *'
+          cron: '0 0 * * *'  #= @daily
           filters:
             branches:
               only: ['master']
