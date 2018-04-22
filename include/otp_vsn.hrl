@@ -1036,4 +1036,12 @@
 -define(OTP_VSN_HAS_MAPS, true).
 -endif.
 
+-ifdef(OTP_VSN_20_AND_ABOVE).
+-define(OTP_VSN_F_STDLIB_STRING_TOKENS(A,B), string:lexemes(A,B)).
+-define(OTP_VSN_F_STDLIB_STRING_TOKENS_2, fun string:lexemes/2).
+-else.
+-define(OTP_VSN_F_STDLIB_STRING_TOKENS(A,B), string:tokens(A,B)).
+-define(OTP_VSN_F_STDLIB_STRING_TOKENS_2, fun string:tokens/2).
+-endif.
+
 -endif.
