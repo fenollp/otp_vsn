@@ -1044,4 +1044,12 @@
 -define(OTP_VSN_F_STDLIB_STRING_TOKENS_2, fun string:tokens/2).
 -endif.
 
+-ifdef(OTP_VSN_16_AND_ABOVE).
+-define(OTP_VSN_F_CRYPTO_MD5(A), crypto:hash(md5,A)).
+-define(OTP_VSN_F_CRYPTO_MD5_1, fun (A) -> crypto:hash(md5,A) end).
+-else.
+-define(OTP_VSN_F_CRYPTO_MD5(A), crypto:md5(A)).
+-define(OTP_VSN_F_CRYPTO_MD5_1, fun crypto:md5/1).
+-endif.
+
 -endif.
