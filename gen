@@ -71,5 +71,15 @@ with open('./include/otp_vsn.hrl', 'w') as fd:
 -define(OTP_VSN_HAS_MAPS, true).
 -endif.
 
+-ifdef(OTP_VSN_17_AND_ABOVE).
+-define(OTP_VSN_T_DICT_DICT(), dict:dict()).
+-define(OTP_VSN_T_DIGRAPH_GRAPH(), digraph:graph()).
+-define(OTP_VSN_T_SETS_SET(), sets:set()).
+-else.
+-define(OTP_VSN_T_DICT_DICT(), dict()).
+-define(OTP_VSN_T_DIGRAPH_GRAPH(), digraph()).
+-define(OTP_VSN_T_SETS_SET(), set()).
+-endif.
+
 -endif.
 ''')
