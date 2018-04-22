@@ -41,8 +41,8 @@ Note: all macros introduced by `otp_vsn` are prefixed with `OTP_VSN` and in full
         * but on OTP 18.3 it is not defined
         * but on OTP 20.3 it is defined as well as `OTP_VSN_20_AND_ABOVE`
 * **`?OTP_VSN_HAS_MAPS`**: defined for releases which have maps (i.e. all since OTP 17.0)
-* **`?OTP_VSN_F_{{APP}_{{MODULE}}_{{FUNCTION}}(...)`**: shim for renamed OTP function calls
-* **`?OTP_VSN_F_{{APP}_{{MODULE}}_{{FUNCTION}}_{{ARITY}}`**: shim for renamed OTP function literals
+* **`?OTP_VSN_F_{{APP}}_{{MODULE}}_{{FUNCTION}}(...)`**: shim for renamed OTP function calls
+* **`?OTP_VSN_F_{{APP}}_{{MODULE}}_{{FUNCTION}}_{{ARITY}}`**: shim for renamed OTP function literals
 
 If you'd like to see more macros you are welcome to
 * open an issue at https://github.com/fenollp/otp_vsn/issues
