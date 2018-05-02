@@ -6,12 +6,6 @@
 -include_lib("eunit/include/eunit.hrl").
 -include_lib("otp_vsn/include/otp_vsn.hrl").
 
--ifdef(OTP_VSN_HAS_MAPS).
-has_maps() -> true.
--else.
-has_maps() -> false.
--endif.
-
 do_test_() ->
     [?_assertMatch([_|_], ?OTP_VSN)
 
@@ -22,34 +16,33 @@ do_test_() ->
     ,?_assertMatch([_|_], ?OTP_VSN_MAJOR_STRING)
     ,?_assertMatch([_|_], ?OTP_VSN_MINOR_STRING)
     ,?_assertMatch([_|_], ?OTP_VSN_PATCH_STRING)
+    ].
 
-    ,?_assertEqual(has_maps(), {module,maps} =:= code:ensure_loaded(maps))
+'ci-only_test_'() ->
+    lists:flatten(
+      [[?_assertMatch([_|_], OTP_VSN)
+       ,?_assertEqual(OTP_VSN, ?OTP_VSN)
+       ,?_assertNotEqual(nomatch, re:run(<<?OTP_VSN>>, <<"^[0-9]+\\.[0-9]+\\.[0-9]+\$">>))
 
-    ] ++ %% More tests if running inside CI
-        lists:flatten(
-          [[?_assertMatch([_|_], OTP_VSN)
-           ,?_assertEqual(OTP_VSN, ?OTP_VSN)
-           ,?_assertNotEqual(nomatch, re:run(<<?OTP_VSN>>, <<"^[0-9]+\\.[0-9]+\\.[0-9]+\$">>))
+       ,?_assertMatch([_|_], OTP_VSN_M)
+       ,?_assertMatch([_|_], OTP_VSN_m)
+       ,?_assertMatch([_|_], OTP_VSN_P)
+       ,?_assertEqual(list_to_integer(OTP_VSN_M), ?OTP_VSN_MAJOR)
+       ,?_assertEqual(list_to_integer(OTP_VSN_m), ?OTP_VSN_MINOR)
+       ,?_assertEqual(list_to_integer(OTP_VSN_P), ?OTP_VSN_PATCH)
 
-           ,?_assertMatch([_|_], OTP_VSN_M)
-           ,?_assertMatch([_|_], OTP_VSN_m)
-           ,?_assertMatch([_|_], OTP_VSN_P)
-           ,?_assertEqual(list_to_integer(OTP_VSN_M), ?OTP_VSN_MAJOR)
-           ,?_assertEqual(list_to_integer(OTP_VSN_m), ?OTP_VSN_MINOR)
-           ,?_assertEqual(list_to_integer(OTP_VSN_P), ?OTP_VSN_PATCH)
-
-           ,?_assertEqual(OTP_VSN_M, ?OTP_VSN_MAJOR_STRING)
-           ,?_assertEqual(OTP_VSN_m, ?OTP_VSN_MINOR_STRING)
-           ,?_assertEqual(OTP_VSN_P, ?OTP_VSN_PATCH_STRING)
-           ]
-           || os:getenv("CI") =:= "true",
-              {OTP_VSN
-              ,OTP_VSN_M
-              ,OTP_VSN_m
-              ,OTP_VSN_P
-              } <- [{os:getenv("_OTP_VSN")
-                    ,os:getenv("_OTP_VSN_M")
-                    ,os:getenv("_OTP_VSN_m")
-                    ,os:getenv("_OTP_VSN_P")
-                    }]
-          ]).
+       ,?_assertEqual(OTP_VSN_M, ?OTP_VSN_MAJOR_STRING)
+       ,?_assertEqual(OTP_VSN_m, ?OTP_VSN_MINOR_STRING)
+       ,?_assertEqual(OTP_VSN_P, ?OTP_VSN_PATCH_STRING)
+       ]
+       || os:getenv("CI") =:= "true",
+          {OTP_VSN
+          ,OTP_VSN_M
+          ,OTP_VSN_m
+          ,OTP_VSN_P
+          } <- [{os:getenv("_OTP_VSN")
+                ,os:getenv("_OTP_VSN_M")
+                ,os:getenv("_OTP_VSN_m")
+                ,os:getenv("_OTP_VSN_P")
+                }]
+      ]).
