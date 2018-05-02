@@ -29,15 +29,18 @@ def unR(rel):
     if rel == 'R16B03-1':
         return ('16', '3', '1')
     two_or_three = rel.split('.')
-    if len(two_or_three) == 3:
-        return tuple(two_or_three)
-    return tuple(two_or_three + ['0'])
+    if len(two_or_three) == 2:
+        if '-' in two_or_three[1]:
+            minor, _ = two_or_three[1].split('-')
+            return (two_or_three[0], minor, '0')
+        return tuple(two_or_three + ['0'])
+    return tuple(two_or_three)
 
-regexp = re.compile(r'^(\d\d\.\d\d?(\.\d\d?)?|R16B(\d\d)?(\-\d)?)\n')
+regexp = re.compile(r'^(\d\d\.\d\d?(\.\d\d?|-rc\d)?|R16B(\d\d)?(\-\d)?)\n')
 with open(sys.argv[1], 'r') as fd:
     lines = fd.readlines()
-    releases_ = [unR(line.strip()) for line in lines if re.match(regexp, line)]
-releases = sorted(releases_)
+    releases_set = set([unR(line.strip()) for line in lines if re.match(regexp, line)])
+releases = sorted(list(releases_set))
 print('Found', len(releases), 'releases')
 for (x,y,z) in releases:
     print(x, y, z)
