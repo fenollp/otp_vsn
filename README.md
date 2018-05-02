@@ -42,7 +42,7 @@ Note: all macros introduced by `otp_vsn` are prefixed with `OTP_VSN` and in full
         * but on OTP 18.3 it is not defined
         * but on OTP 20.3 it is defined as well as `OTP_VSN_20_AND_ABOVE`
 * **`?OTP_VSN_HAS_MAPS`**: defined for releases which have maps (i.e. all since OTP 17.0)
-* **`?OTP_VSN_HAS_ST_MATCHING`** see [stacktrace matching macros](#on-st-matching)
+* **`?OTP_VSN_HAS_ST_MATCHING`**, **`?OTP_VSN_IF_HAS_ST_MATCHING`**: see [stacktrace matching macros](#on-st-matching)
 
 If you'd like to see more macros you are welcome to
 * open an issue at https://github.com/fenollp/otp_vsn/issues
@@ -60,32 +60,19 @@ catch E:T:ST -> ...
 end
 ```
 
-In order to compile without these warnings and be backwards compatible
-you can do either:
+In order to compile without these warnings and be backwards compatible we introduce a couple macros:
+* **`?OTP_VSN_IF_HAS_ST_MATCHING(Y)`**, **`?OTP_VSN_IF_HAS_ST_MATCHING(Y,N)`**: see below and [`test/has_st_matching_tests.erl`](/test/has_st_matching_tests.erl)
+* **`?OTP_VSN_HAS_ST_MATCHING`**: defined for releases which have that syntax (i.e. all since OTP 21.0)
 
 ```erlang
-try ...
-catch
-?OTP_VSN_HAS_ST_MATCHING(
-  error:_:ST -> begin a(), ST end;
-  )
-?OTP_VSN_HAS_ST_MATCHING(throw:_:ST -> f(ST);, throw:_ -> f(erlang:get_stacktrace());)
-?OTP_VSN_HAS_ST_MATCHING(E:T:ST -> ...)
-end
-```
-
-or the annoyingly redundant:
-
-```erlang
--ifdef(OTP_VSN_HAS_ST_MATCHING).
-try ...
-catch E:T:ST -> ...
-end
--else.
-try ...
-catch E:T ->
-    ST = erlang:get_stacktrace(),
-    ...
-end
--endif.
+    catch
+        ?OTP_VSN_IF_HAS_ST_MATCHING(
+           error:_:ST -> begin f(ST), X end;
+          ,error:_ -> begin f(erlang:get_stacktrace()), X end;
+          )
+        ?OTP_VSN_IF_HAS_ST_MATCHING(throw:only_matching:ST -> f(X,ST);)
+        ?OTP_VSN_IF_HAS_ST_MATCHING(throw:b:ST -> f(X,ST);, throw:b -> f(X,erlang:get_stacktrace());)
+        ?OTP_VSN_IF_HAS_ST_MATCHING(_:_:ST -> f(X, ST),
+                                    _:_    -> f(X, erlang:get_stacktrace()))
+    end
 ```

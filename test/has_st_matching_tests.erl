@@ -7,23 +7,44 @@
 -include_lib("otp_vsn/include/otp_vsn.hrl").
 
 do_test_() ->
-    [?_assertEqual(a, do_try(a))
-    ,?_assertEqual(b, do_try(b))
-    ,?_assertEqual(c, do_try(c))
-    ].
+    lists:flatten(
+      [[?_assertEqual(X, try_compact(X))
+       ,?_assertEqual(X, try_not_DRY(X))
+       ]
+       || X <- [a,b,c]
+      ]).
 
-do_try(X) ->
+try_compact(X) ->
     try explode(X)
     catch
-        ?OTP_VSN_HAS_ST_MATCHING(
+        ?OTP_VSN_IF_HAS_ST_MATCHING(
            error:_:ST -> begin f(ST), X end;
           ,error:_ -> begin f(erlang:get_stacktrace()), X end;
           )
-        ?OTP_VSN_HAS_ST_MATCHING(throw:only_matching:ST -> f(X,ST);)
-        ?OTP_VSN_HAS_ST_MATCHING(throw:b:ST -> f(X,ST);, throw:b -> f(X,erlang:get_stacktrace());)
-        ?OTP_VSN_HAS_ST_MATCHING(_:_:ST -> f(X, ST),
-                                 _:_    -> f(X, erlang:get_stacktrace()))
+        ?OTP_VSN_IF_HAS_ST_MATCHING(throw:only_matching:ST -> f(X,ST);)
+        ?OTP_VSN_IF_HAS_ST_MATCHING(throw:b:ST -> f(X,ST);, throw:b -> f(X,erlang:get_stacktrace());)
+        ?OTP_VSN_IF_HAS_ST_MATCHING(_:_:ST -> f(X, ST),
+                                    _:_    -> f(X, erlang:get_stacktrace()))
     end.
+
+-ifdef(OTP_VSN_HAS_ST_MATCHING).
+try_not_DRY(X) ->
+    try explode(X)
+    catch
+        error:_:ST -> begin f(ST), X end;
+        throw:only_matching:ST -> f(X,ST);
+        throw:b:ST -> f(X,ST);
+        _:_:ST -> f(X, ST)
+    end.
+-else.
+try_not_DRY(X) ->
+    try explode(X)
+    catch
+        error:_ -> begin f(erlang:get_stacktrace()), X end;
+        throw:b -> f(X,erlang:get_stacktrace());
+        _:_    -> f(X, erlang:get_stacktrace())
+    end.
+-endif.
 
 explode(a) -> error(a);
 explode(b) -> throw(b);

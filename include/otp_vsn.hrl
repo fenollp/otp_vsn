@@ -1049,4 +1049,13 @@
 -define(OTP_VSN_HAS_MAPS, true).
 -endif.
 
+-ifdef(OTP_VSN_21_AND_ABOVE).
+-define(OTP_VSN_HAS_ST_MATCHING, true).
+-define(OTP_VSN_IF_HAS_ST_MATCHING(Yes), Yes).
+-define(OTP_VSN_IF_HAS_ST_MATCHING(Yes, No), Yes).
+-else.
+-define(OTP_VSN_IF_HAS_ST_MATCHING(Yes), ).
+-define(OTP_VSN_IF_HAS_ST_MATCHING(Yes, No), No).
+-endif.
+
 -endif.
