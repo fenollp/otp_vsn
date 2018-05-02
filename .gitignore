@@ -20,3 +20,4 @@ rebar3.crashdump
 kerl
 releases.txt
 include/internal_otp_vsn.hrl
+/otp_vsn_testing
