@@ -17,9 +17,10 @@ begin
           %% Read vsn string from the 'OTP_VERSION' file and return as list without
           %% the "\n".
           Rel ->
-              Split = fun (Bin) -> binary:split(Bin, <<$.>>, [global]) end,
-              ToXYZ = fun ([X,Y]) -> {binary_to_list(X), binary_to_list(Y), "0"};
-                          ([X,Y,Z|_]) -> {binary_to_list(X), binary_to_list(Y), binary_to_list(Z)}
+              Split = fun (Bin) -> binary:split(Bin, [<<$.>>,<<$->>], [global]) end,
+              ToXYZ = fun ([X,Y]) -> {X, Y, "0"};
+                          ([X,Y,<<"rc",_/binary>>]) -> {X, Y, "0"};
+                          ([X,Y,Z|_]) -> {X, Y, Z}
                       end,
 
               File = filename:join([code:root_dir(), "releases", Rel, "OTP_VERSION"]),

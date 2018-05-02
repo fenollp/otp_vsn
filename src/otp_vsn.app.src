@@ -1,12 +1,13 @@
-{application, otp_vsn,
- [{description, "Macros defined per Erlang/OTP version so you don't have to."},
-  {vsn, "2.0.0"},
-  {registered, []},
-  {applications, []},
-  {env,[]},
-  {modules, []},
-
-  {maintainers, ["Pierre Fenoll <pierre.fenoll@gmail.com>"]},
-  {licenses, ["Apache 2.0"]},
-  {links, [{"Github", "https://github.com/fenollp/otp_vsn"}]}
- ]}.
+{application,otp_vsn,
+             [{description,"Macros defined per Erlang/OTP version so you don't have to."},
+              {vsn,"2.1.0"},
+              {registered,[]},
+              {applications,[]},
+              {env,[]},
+              {modules,[]},
+              {maintainers,["Pierre Fenoll <pierre.fenoll@gmail.com>"]},
+              {licenses,["Apache 2.0"]},
+              {links,[{"Github","https://github.com/fenollp/otp_vsn"}]},
+              {files,["include/otp_vsn.hrl","rebar.config.script",
+                      "rebar.lock","src/otp_vsn.app.src","LICENSE*",
+                      "README*"]}]}.

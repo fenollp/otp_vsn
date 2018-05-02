@@ -3,13 +3,14 @@ RELEASES_TXT ?= releases.txt
 KERL = ./kerl
 GEN = ./gen
 KERL_URL ?= https://raw.githubusercontent.com/kerl/kerl/master/kerl
+TESTING = otp_vsn_testing
 
-.PHONY: gen clean fmt
+.PHONY: gen clean fmt test
 all: gen
 	$(REBAR3) eunit
 
 test:
-	git clone https://github.com/fenollp/otp_vsn_testing.git
+	$(if $(wildcard $(TESTING)),,git clone --depth=1 https://github.com/fenollp/otp_vsn_testing.git $(TESTING))
 	cd otp_vsn_testing && $(REBAR3) do eunit,release
 
 $(KERL):
