@@ -55,3 +55,20 @@ f(X, ST) ->
     X.
 
 f([_|_]) -> ok.
+
+
+% Get the stacktrace in a way that is backwards compatible
+-ifdef(ERLANG_OTP_VERSION_21_FEATURES).
+-define(STACKTRACE(ErrorType, Error, ErrorStackTrace),
+        ErrorType:Error:ErrorStackTrace ->).
+-else.
+-define(STACKTRACE(ErrorType, Error, ErrorStackTrace),
+        ErrorType:Error ->
+            ErrorStackTrace = erlang:get_stacktrace(),).
+-endif.
+That allows use like:
+
+try function1(Arg1)
+catch
+    ?STACKTRACE(exit, badarg, ErrorStackTrace)
+        % do stuff with ErrorStackTrace
