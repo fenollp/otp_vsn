@@ -78,9 +78,11 @@ with open('./include/otp_vsn.hrl', 'w') as fd:
 -define(OTP_VSN_HAS_ST_MATCHING, true).
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes), Yes).
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes, No), Yes).
+-define(OTP_VSN_STACKTRACE(Type, Error, ST), Type:Error:ST ->).
 -else.
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes), ).
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes, No), No).
+-define(OTP_VSN_STACKTRACE(Type, Error, ST), Type:Error -> ST = erlang:get_stacktrace(),).
 -endif.
 
 -endif.
