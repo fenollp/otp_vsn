@@ -10,9 +10,21 @@ do_test_() ->
     lists:flatten(
       [[?_assertEqual(X, try_compact(X))
        ,?_assertEqual(X, try_not_DRY(X))
+       ,?_assertEqual(X, really_DRY(X))
        ]
        || X <- [a,b,c]
       ]).
+
+really_DRY(X) ->
+    try explode(X)
+    catch
+        ?OTP_VSN_STACKTRACE(error, _, ST)
+            begin f(ST), X end;
+        ?OTP_VSN_STACKTRACE(throw, only_matching, ST) f(X,ST);
+        ?OTP_VSN_STACKTRACE(throw, b, ST) f(X,ST);
+        ?OTP_VSN_STACKTRACE(_, _, ST)
+            f(X, ST)
+    end.
 
 try_compact(X) ->
     try explode(X)

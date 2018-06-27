@@ -1027,11 +1027,72 @@
 -define(OTP_VSN_16_AND_ABOVE, true).
 -endif.
 
+-ifdef(_internal_otp_vsn_20_3_5).
+-define(OTP_VSN, "20.3.5").
+-define(OTP_VSN_MAJOR, 20).
+-define(OTP_VSN_MINOR, 3).
+-define(OTP_VSN_PATCH, 5).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_20_3_6).
+-define(OTP_VSN, "20.3.6").
+-define(OTP_VSN_MAJOR, 20).
+-define(OTP_VSN_MINOR, 3).
+-define(OTP_VSN_PATCH, 6).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_20_3_7).
+-define(OTP_VSN, "20.3.7").
+-define(OTP_VSN_MAJOR, 20).
+-define(OTP_VSN_MINOR, 3).
+-define(OTP_VSN_PATCH, 7).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_20_3_8).
+-define(OTP_VSN, "20.3.8").
+-define(OTP_VSN_MAJOR, 20).
+-define(OTP_VSN_MINOR, 3).
+-define(OTP_VSN_PATCH, 8).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
 -ifdef(_internal_otp_vsn_21_0_0).
 -define(OTP_VSN, "21.0.0").
 -define(OTP_VSN_MAJOR, 21).
 -define(OTP_VSN_MINOR, 0).
 -define(OTP_VSN_PATCH, 0).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_21_0_1).
+-define(OTP_VSN, "21.0.1").
+-define(OTP_VSN_MAJOR, 21).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 1).
 -define(OTP_VSN_21_AND_ABOVE, true).
 -define(OTP_VSN_20_AND_ABOVE, true).
 -define(OTP_VSN_19_AND_ABOVE, true).
@@ -1053,9 +1114,11 @@
 -define(OTP_VSN_HAS_ST_MATCHING, true).
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes), Yes).
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes, No), Yes).
+-define(OTP_VSN_STACKTRACE(Type, Error, ST), Type:Error:ST ->).
 -else.
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes), ).
 -define(OTP_VSN_IF_HAS_ST_MATCHING(Yes, No), No).
+-define(OTP_VSN_STACKTRACE(Type, Error, ST), Type:Error -> ST = erlang:get_stacktrace(),).
 -endif.
 
 -endif.
