@@ -64,7 +64,7 @@ begin
             false ->
                 [ filename:join(
                     [LibDir,"otp_vsn","include","internal_otp_vsn.hrl"])
-                    || LibDir <- DepsDir
+                    || LibDir <- DepsDirs
                 ];
             true ->
                 %% Current app is this app itself
