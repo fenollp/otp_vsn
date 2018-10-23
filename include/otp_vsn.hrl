@@ -1101,6 +1101,19 @@
 -define(OTP_VSN_16_AND_ABOVE, true).
 -endif.
 
+-ifdef(_internal_otp_vsn_21_1_0).
+-define(OTP_VSN, "21.1.0").
+-define(OTP_VSN_MAJOR, 21).
+-define(OTP_VSN_MINOR, 1).
+-define(OTP_VSN_PATCH, 0).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
 %% integer_to_list(Literal) resolves at compile time.
 -define(OTP_VSN_MAJOR_STRING, integer_to_list(?OTP_VSN_MAJOR)).
 -define(OTP_VSN_MINOR_STRING, integer_to_list(?OTP_VSN_MINOR)).

@@ -46,24 +46,31 @@ begin
       end,
 
   Data = ["-define(_internal_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
-  
+
+  DefaultBuildLibDir = "_build/default/lib",
+
   DepsDir = case os:getenv("REBAR_LIB_DEPS") of 
-	      false -> "_build/default/lib";
-	      [] -> "_build/default/lib";
+	      false -> DefaultBuildLibDir;
+	      [] -> DefaultBuildLibDir;
 	      Dir -> 
 		Dir
 	    end,
-  Dst = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
+  Dsts = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
             false ->
-                filename:join(
+                %filename:join(
                   %["_build","default","lib","otp_vsn","include","internal_otp_vsn.hrl"
-                  [DepsDir,"otp_vsn","include","internal_otp_vsn.hrl"
-                  ]);
+                %  [DepsDir,"otp_vsn","include","internal_otp_vsn.hrl"
+                %  ])
+                [ filename:join(
+                    [LibDir,"otp_vsn","include","internal_otp_vsn.hrl"])
+                    || LibDir <- [ DepsDir,DefaultBuildLibDir]
+                ];
             true ->
                 %% Current app is this app itself
-                filename:join("include", "internal_otp_vsn.hrl")
+                [filename:join("include", "internal_otp_vsn.hrl")]
         end,
-  ok = file:write_file(Dst, Data),
+  %ok = file:write_file(Dst, Data),
+  [ file:write_file(Dst,Data) || Dst <- Dsts ] ,
 
   CONFIG
 end.
