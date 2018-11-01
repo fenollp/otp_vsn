@@ -46,24 +46,33 @@ begin
       end,
 
   Data = ["-define(_internal_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
-  
-  DepsDir = case os:getenv("REBAR_LIB_DEPS") of 
-	      false -> "_build/default/lib";
-	      [] -> "_build/default/lib";
-	      Dir -> 
-		Dir
+
+  DefaultBuildLibDir = "_build/default/lib",
+
+  %% get all possible otp_vsn lib dirs
+  %% _build/default/lib/otp_vsn --> if no REBAR_LIB_DEPS env specified, or
+  %%    no custom rebar.config.script specified
+  %% REBAR_LIB_DEPS --> if env exists
+  DepsDirs = case os:getenv("REBAR_LIB_DEPS") of
+	      false -> [DefaultBuildLibDir];
+	      [] -> [DefaultBuildLibDir];
+	      Dir -> [Dir,DefaultBuildLibDir]
 	    end,
-  Dst = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
+
+  %% generate internal_otp_vsn.hrl at all possible dirs
+  Dsts = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
             false ->
-                filename:join(
-                  %["_build","default","lib","otp_vsn","include","internal_otp_vsn.hrl"
-                  [DepsDir,"otp_vsn","include","internal_otp_vsn.hrl"
-                  ]);
+                [ filename:join(
+                    [LibDir,"otp_vsn","include","internal_otp_vsn.hrl"])
+                    || LibDir <- DepsDirs
+                ];
             true ->
                 %% Current app is this app itself
-                filename:join("include", "internal_otp_vsn.hrl")
+                [filename:join("include", "internal_otp_vsn.hrl")]
         end,
-  ok = file:write_file(Dst, Data),
+  %ok = file:write_file(Dst, Data),
+  %% ignore write_file error if dir is not exist
+  [ file:write_file(Dst,Data) || Dst <- Dsts ] ,
 
   CONFIG
 end.
