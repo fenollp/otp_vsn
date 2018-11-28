@@ -47,7 +47,9 @@ begin
 
   Data = ["-define(_internal_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
 
-  DefaultBuildLibDir = "_build/default/lib",
+  %% DefaultBuildLibDir = "_build/default/lib",
+  DefaultBaseDir = proplists:get_value(base_dir,CONFIG,"_build"),
+  DefaultBuildLibDir = DefaultBaseDir ++ "/default/lib",
 
   %% get all possible otp_vsn lib dirs
   %% _build/default/lib/otp_vsn --> if no REBAR_LIB_DEPS env specified, or
