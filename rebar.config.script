@@ -47,9 +47,20 @@ begin
 
   Data = ["-define(_internal_otp_vsn_", X,$_,Y,$_,Z, ", true).", $\n],
 
+  FLog = fun(Fmt,Args) ->
+          case os:getenv("DEBUG") of
+            "1" ->         %% env var DEBUG set to 1
+              io:format(Fmt,Args);
+            _ ->           %% env var DEBUG not defined/empty string/0...
+              ok
+            end
+          end,
+
   %% DefaultBuildLibDir = "_build/default/lib",
   DefaultBaseDir = proplists:get_value(base_dir,CONFIG,"_build"),
   DefaultBuildLibDir = DefaultBaseDir ++ "/default/lib",
+
+  FLog("DefaultBuildLibDir=~p~n",[DefaultBuildLibDir]),
 
   %% get all possible otp_vsn lib dirs
   %% _build/default/lib/otp_vsn --> if no REBAR_LIB_DEPS env specified, or
@@ -60,6 +71,8 @@ begin
 	      [] -> [DefaultBuildLibDir];
 	      Dir -> [Dir,DefaultBuildLibDir]
 	    end,
+
+  FLog("DepsDir=~p~n",[DepsDirs]),
 
   %% generate internal_otp_vsn.hrl at all possible dirs
   Dsts = case filelib:is_regular(filename:join("src","otp_vsn.app.src")) of
@@ -74,7 +87,9 @@ begin
         end,
   %ok = file:write_file(Dst, Data),
   %% ignore write_file error if dir is not exist
-  [ file:write_file(Dst,Data) || Dst <- Dsts ] ,
+  WriteResult = [ (catch file:write_file(Dst,Data)) || Dst <- Dsts ] ,
+
+  FLog("Dests=~p,WriteResult = ~p~n",[Dsts,WriteResult]),
 
   CONFIG
 end.
