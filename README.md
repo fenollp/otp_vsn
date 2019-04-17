@@ -1,4 +1,4 @@
-# [otp_vsn](https://github.com/fenollp/otp_vsn) [![CircleCI](https://circleci.com/gh/fenollp/otp_vsn/tree/master.svg?style=svg)](https://circleci.com/gh/fenollp/otp_vsn/tree/master) [![TravisCI build status](https://travis-ci.org/fenollp/otp_vsn.svg?branch=master)](https://travis-ci.org/fenollp/otp_vsn)
+# [otp_vsn](https://github.com/fenollp/otp_vsn) [![CircleCI](https://circleci.com/gh/fenollp/otp_vsn/tree/master.svg?style=svg)](https://circleci.com/gh/fenollp/otp_vsn/tree/master) [![TravisCI build status](https://travis-ci.org/fenollp/otp_vsn.svg?branch=master)](https://travis-ci.org/fenollp/otp_vsn) [![Hex pm](http://img.shields.io/hexpm/v/otp_vsn.svg?style=flat)](https://hex.pm/packages/otp_vsn)
 
 Macros defined per Erlang/OTP version so you don't have to.
 
