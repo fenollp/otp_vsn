@@ -20,7 +20,7 @@ gen: $(KERL)
 	KERL_BUILD_BACKEND=git $(KERL) update releases >$(RELEASES_TXT)
 	$(GEN) $(RELEASES_TXT)
 	@git status --porcelain
-	@[ '0' = "$$(git status --porcelain | grep -Eo '^MM' | wc -l)" ]
+	@[ '0' = "$$(git status --porcelain | grep -F include/otp_vsn.hrl | wc -l)" ]
 
 clean:
 	$(if $(wildcard $(KERL)),rm $(KERL))
