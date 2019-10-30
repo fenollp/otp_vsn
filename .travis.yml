@@ -2,6 +2,8 @@ language: erlang
 matrix:
   fast_finish: true
   include: # More reliable mapping than what docker/erlang:* provides
+  - otp_release: 22.0
+    env: _OTP_VSN=22.0.2 _OTP_VSN_M=20 _OTP_VSN_m=0 _OTP_VSN_P=2
   - otp_release: 20.2
     env: _OTP_VSN=20.2.4 _OTP_VSN_M=20 _OTP_VSN_m=2 _OTP_VSN_P=4
   - otp_release: 20.0
@@ -19,11 +21,10 @@ matrix:
   - otp_release: R16B01
     env: _OTP_VSN=16.1.0 _OTP_VSN_M=16 _OTP_VSN_m=1 _OTP_VSN_P=0
 before_script:
-- |
-  git clone --branch 3.5.0 https://github.com/erlang/rebar3.git
-  cd rebar3 && ./bootstrap
-  mv -v rebar3 ~/.local/bin
-  export PATH="$PATH:$HOME/.local/bin"
+- curl -#fSLo ./rebar3 https://s3.amazonaws.com/rebar3/rebar3
+- chmod +x ./rebar3
+- mv -v rebar3 ~/.local/bin
+- export PATH="$PATH:$HOME/.local/bin"
 - rebar3 version
 script:
 - DEBUG=1 rebar3 eunit
