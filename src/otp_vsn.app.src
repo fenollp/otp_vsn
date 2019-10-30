@@ -1,6 +1,6 @@
 {application,otp_vsn,
              [{description,"Macros defined per Erlang/OTP version so you don't have to."},
-              {vsn,"2.5.0"},
+              {vsn,"2.6.0"},
               {registered,[]},
               {applications,[]},
               {env,[]},
