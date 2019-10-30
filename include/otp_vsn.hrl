@@ -1505,6 +1505,188 @@
 -define(OTP_VSN_16_AND_ABOVE, true).
 -endif.
 
+-ifdef(_internal_otp_vsn_22_0_1).
+-define(OTP_VSN, "22.0.1").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 1).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_0_2).
+-define(OTP_VSN, "22.0.2").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 2).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_0_3).
+-define(OTP_VSN, "22.0.3").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 3).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_0_4).
+-define(OTP_VSN, "22.0.4").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 4).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_0_5).
+-define(OTP_VSN, "22.0.5").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 5).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_0_6).
+-define(OTP_VSN, "22.0.6").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 6).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_0_7).
+-define(OTP_VSN, "22.0.7").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 0).
+-define(OTP_VSN_PATCH, 7).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_1_0).
+-define(OTP_VSN, "22.1.0").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 1).
+-define(OTP_VSN_PATCH, 0).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_1_1).
+-define(OTP_VSN, "22.1.1").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 1).
+-define(OTP_VSN_PATCH, 1).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_1_2).
+-define(OTP_VSN, "22.1.2").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 1).
+-define(OTP_VSN_PATCH, 2).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_1_3).
+-define(OTP_VSN, "22.1.3").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 1).
+-define(OTP_VSN_PATCH, 3).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_1_4).
+-define(OTP_VSN, "22.1.4").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 1).
+-define(OTP_VSN_PATCH, 4).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
+-ifdef(_internal_otp_vsn_22_1_5).
+-define(OTP_VSN, "22.1.5").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 1).
+-define(OTP_VSN_PATCH, 5).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
 %% integer_to_list(Literal) resolves at compile time.
 -define(OTP_VSN_MAJOR_STRING, integer_to_list(?OTP_VSN_MAJOR)).
 -define(OTP_VSN_MINOR_STRING, integer_to_list(?OTP_VSN_MINOR)).
