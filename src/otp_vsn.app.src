@@ -5,7 +5,6 @@
               {applications,[]},
               {env,[]},
               {modules,[]},
-              {maintainers,["Pierre Fenoll <pierre.fenoll@gmail.com>"]},
               {licenses,["Apache 2.0"]},
               {links,[{"Github","https://github.com/fenollp/otp_vsn"}]},
               {files,["include/otp_vsn.hrl","rebar.config.script",
