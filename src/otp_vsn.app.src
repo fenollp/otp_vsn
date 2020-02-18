@@ -2,7 +2,7 @@
              [{description,"Macros defined per Erlang/OTP version so you don't have to."},
               {vsn,"2.7.0"},
               {registered,[]},
-              {applications,[]},
+              {applications,[kernel,stdlib]},
               {env,[]},
               {modules,[]},
               {licenses,["Apache 2.0"]},
