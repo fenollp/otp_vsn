@@ -1855,6 +1855,20 @@
 -define(OTP_VSN_16_AND_ABOVE, true).
 -endif.
 
+-ifdef(_internal_otp_vsn_22_3_0).
+-define(OTP_VSN, "22.3.0").
+-define(OTP_VSN_MAJOR, 22).
+-define(OTP_VSN_MINOR, 3).
+-define(OTP_VSN_PATCH, 0).
+-define(OTP_VSN_22_AND_ABOVE, true).
+-define(OTP_VSN_21_AND_ABOVE, true).
+-define(OTP_VSN_20_AND_ABOVE, true).
+-define(OTP_VSN_19_AND_ABOVE, true).
+-define(OTP_VSN_18_AND_ABOVE, true).
+-define(OTP_VSN_17_AND_ABOVE, true).
+-define(OTP_VSN_16_AND_ABOVE, true).
+-endif.
+
 -ifdef(_internal_otp_vsn_23_0_0).
 -define(OTP_VSN, "23.0.0").
 -define(OTP_VSN_MAJOR, 23).
