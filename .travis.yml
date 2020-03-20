@@ -3,7 +3,7 @@ matrix:
   fast_finish: true
   include: # More reliable mapping than what docker/erlang:* provides
   - otp_release: 22.0
-    env: _OTP_VSN=22.0.2 _OTP_VSN_M=22 _OTP_VSN_m=0 _OTP_VSN_P=0
+    env: _OTP_VSN=22.0.0 _OTP_VSN_M=22 _OTP_VSN_m=0 _OTP_VSN_P=0
   - otp_release: 20.2
     env: _OTP_VSN=20.2.4 _OTP_VSN_M=20 _OTP_VSN_m=2 _OTP_VSN_P=4
   - otp_release: 20.0
