@@ -4,8 +4,8 @@ matrix:
   include: # More reliable mapping than what docker/erlang:* provides
   - otp_release: 22.0
     env: _OTP_VSN=22.0.0 _OTP_VSN_M=22 _OTP_VSN_m=0 _OTP_VSN_P=0
-  - otp_release: 20.2
-    env: _OTP_VSN=20.2.4 _OTP_VSN_M=20 _OTP_VSN_m=2 _OTP_VSN_P=4
+  - otp_release: 20.3.7
+    env: _OTP_VSN=20.3.7 _OTP_VSN_M=20 _OTP_VSN_m=3 _OTP_VSN_P=7
   - otp_release: 20.0
     env: _OTP_VSN=20.0.5 _OTP_VSN_M=20 _OTP_VSN_m=0 _OTP_VSN_P=5
   - otp_release: 19.3
@@ -16,20 +16,14 @@ matrix:
     env: _OTP_VSN=18.2.1 _OTP_VSN_M=18 _OTP_VSN_m=2 _OTP_VSN_P=1
   - otp_release: 17.5
     env: _OTP_VSN=17.5.0 _OTP_VSN_M=17 _OTP_VSN_m=5 _OTP_VSN_P=0
-  - otp_release: R16B03-1
-    env: _OTP_VSN=16.3.1 _OTP_VSN_M=16 _OTP_VSN_m=3 _OTP_VSN_P=1
-  - otp_release: R16B01
-    env: _OTP_VSN=16.1.0 _OTP_VSN_M=16 _OTP_VSN_m=1 _OTP_VSN_P=0
 before_script:
 - curl -#fSLo ./rebar3 https://s3.amazonaws.com/rebar3/rebar3
 - chmod +x ./rebar3
-- mv -v rebar3 ~/.local/bin
-- export PATH="$PATH:$HOME/.local/bin"
-- rebar3 version
+- ./rebar3 version
 script:
-- DEBUG=1 rebar3 eunit
+- DEBUG=1 ./rebar3 eunit
 - |
-  git clone https://github.com/fenollp/otp_vsn_testing.git
+  git clone --depth=1 https://github.com/fenollp/otp_vsn_testing.git
   cd otp_vsn_testing
-  rebar3 do eunit,release
+  ./rebar3 do eunit,release
   ! [ -f include/internal_otp_vsn.hrl ]
