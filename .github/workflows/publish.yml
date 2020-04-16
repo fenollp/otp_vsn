@@ -1,7 +1,7 @@
 name: Publish to hex.pm
 on: {push: {tags: ['*']}}
 jobs:
-  up2date:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

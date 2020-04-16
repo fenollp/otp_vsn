@@ -2,7 +2,7 @@ name: Tag syncs
 on:
   push: {branches: [master]}
 jobs:
-  up2date:
+  tag:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
