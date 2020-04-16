@@ -18,5 +18,3 @@ jobs:
 
         wget -nc https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
         ./rebar3 hex publish <<<y
-
-        # https://github.com/tsloughter/rebar3_hex/issues/157
