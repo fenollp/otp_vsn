@@ -1,9 +1,38 @@
 on:
-  schedule:
-  - cron: 0 13 * * *
+  # schedule:
+  # - cron: 0 13 * * *
+  pull:
 jobs:
   up2date:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: make gen
+
+    - id: commit
+      run: |
+        if ! make gen; then
+          echo Untracked changes
+          git --no-pager diff -- include/otp_vsn.hrl
+
+          echo Creating commit
+          git config --global user.name ${GITHUB_ACTOR}
+          git config --global user.email ${GITHUB_ACTOR}@github.com
+          git add include/otp_vsn.hrl
+          git commit -m sync
+
+          echo ::set-output name=committed::yes
+        fi
+
+    - name: Push commit
+      uses: ad-m/github-push-action@master
+      if: steps.commit.outputs.committed == 'yes'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Bump version and push tag
+      uses: mathieudutour/github-tag-action@v4
+      if: steps.commit.outputs.committed == 'yes'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        default_bump: minor
+        tag_prefix: ''
