@@ -1,0 +1,18 @@
+on: {push: {tags: ['*']}}
+jobs:
+  up2date:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - run: |
+        mkdir -p ~/.hex
+        echo "{username,<<\"${HEX_USERNAME}\">>}." >~/.hex/hex.config
+        echo "{key,<<\"${HEX_KEY}\">>}." >>~/.hex/hex.config
+
+        mkdir -p ~/.config/rebar3
+        echo '{plugins, [rebar3_hex]}.' >~/.config/rebar3/rebar.config
+
+        # https://github.com/tsloughter/rebar3_hex/issues/157
+        rebar3 hex cut --increment minor
+        # https://github.com/zotonic/hexpub
