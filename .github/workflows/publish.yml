@@ -11,6 +11,7 @@ jobs:
         {
             echo '{username,<<"'${HEX_USERNAME}'">>}.'
             echo '{key,<<"'${HEX_KEY}'">>}.'
+            echo "{'$write_key',<<\"HEX_WRITEKEY\">>}."
         } >~/.hex/hex.config
 
         mkdir -p ~/.config/rebar3
