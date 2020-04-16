@@ -1,8 +1,7 @@
-name: Keep in sync with OTP releases
+name: Commit new OTP releases
 on:
-  # schedule:
-  # - cron: 0 13 * * *
-  push: {branches: [master]}
+  schedule:
+  - cron: 0 13 * * *
 jobs:
   up2date:
     runs-on: ubuntu-latest
@@ -18,7 +17,7 @@ jobs:
           git config --global user.name ${GITHUB_ACTOR}
           git config --global user.email ${GITHUB_ACTOR}@github.com
           git add include/otp_vsn.hrl
-          git commit -m sync
+          git commit -m 'make gen'
 
           echo ::set-output name=committed::yes
         fi
@@ -27,12 +26,4 @@ jobs:
       uses: ad-m/github-push-action@master
       if: steps.commit.outputs.committed == 'yes'
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Bump version and push tag
-      uses: mathieudutour/github-tag-action@v4
-      if: steps.commit.outputs.committed == 'yes'
-      with:
         github_token: ${{ secrets.TAGGING_TOKEN }} # Triggers a workflow
-        default_bump: minor
-        tag_prefix: ''
