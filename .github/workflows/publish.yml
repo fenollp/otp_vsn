@@ -8,11 +8,7 @@ jobs:
 
     - run: |
         mkdir -p ~/.hex
-        {
-            echo '{username,<<"'${HEX_USERNAME}'">>}.'
-            echo '{key,<<"'${HEX_KEY}'">>}.'
-            echo "{'$write_key',<<\"HEX_WRITEKEY\">>}."
-        } >~/.hex/hex.config
+        echo "$HEX_STUFF" >~/.hex/hex.config
 
         mkdir -p ~/.config/rebar3
         echo '{plugins, [rebar3_hex]}.' >~/.config/rebar3/rebar.config
