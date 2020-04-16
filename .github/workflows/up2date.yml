@@ -2,7 +2,7 @@ name: Keep in sync with OTP releases
 on:
   # schedule:
   # - cron: 0 13 * * *
-  pull_request:
+  push: {branches: [master]}
 jobs:
   up2date:
     runs-on: ubuntu-latest
