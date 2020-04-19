@@ -9,7 +9,9 @@ jobs:
     - run: |
         mkdir -p ~/.config/rebar3
         echo '{plugins, [rebar3_hex]}.' >~/.config/rebar3/rebar.config
+        wget -nc https://s3.amazonaws.com/rebar3/rebar3
+        chmod +x rebar3
 
-        wget -nc https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
-
-        ./rebar3 hex publish
+    - run: ./rebar3 hex publish
+      env:
+        HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
