@@ -12,6 +12,7 @@ jobs:
         wget -nc https://s3.amazonaws.com/rebar3/rebar3
         chmod +x rebar3
 
-    - run: env HEX_API_KEY="$HEX_API_KEY" ./rebar3 hex publish
+    - run: ./rebar3 hex publish
       env:
+        DEBUG: '1'
         HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
